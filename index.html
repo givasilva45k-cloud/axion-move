@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axion Move - Mesa-Carro Inovadora | Portugal</title>
+
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="A Axion Pro é a mesa-carro revolucionária que sobe escadas, anda em qualquer terreno e transporta tudo com segurança total. Inovação portuguesa.">
+    <meta property="og:title" content="Axion Move - Mesa-Carro Inovadora">
+    <meta property="og:description" content="A revolução em mobilidade e transporte. Sobe escadas, anda em qualquer terreno com segurança total.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="carro da axion move .png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Axion Move - Mesa-Carro Inovadora">
+    <meta name="twitter:description" content="A revolução em mobilidade e transporte.">
+
+    <!-- Favicon inline SVG -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230052cc'/><text y='24' x='4' font-size='22' font-family='sans-serif' font-weight='900' fill='%2300d4ff'>A</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== CURSOR PERSONALIZADO ===== -->
+    <div id="customCursor" class="custom-cursor"></div>
+    <div id="cursorTrail" class="cursor-trail"></div>
+
+    <!-- ===== SCROLL PROGRESS BAR ===== -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spheres">
+                <div class="loading-sphere ls-1"></div>
+                <div class="loading-sphere ls-2"></div>
+                <div class="loading-sphere ls-3"></div>
+            </div>
+            <span class="loading-logo-text">Axion <span class="loading-highlight">Move</span></span>
+            <div class="loading-bar-wrapper"><div class="loading-bar"></div></div>
+            <p class="loading-tagline">A revolução em mobilidade</p>
+        </div>
+    </div>
+
+    <!-- ===== CANVAS PARTICULAS ===== -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- ===== ANNOUNCEMENT BAR ===== -->
+    <div class="announcement-bar" id="announcementBar">
+        <div class="announcement-content">
+            <i class="fas fa-star"></i>
+            <span>🎉 Pré-lançamento — Desconto especial para os primeiros 100 clientes!</span>
+            <a href="#preregister" class="announcement-cta">Garantir lugar</a>
+        </div>
+        <button class="announcement-close" id="closeAnnouncement" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+        <nav class="container">
+            <div class="logo-section">
+                <img src="axion move logo.png" alt="Axion Move">
+                <span class="logo-text">Axion Move</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Funcionalidades</a>
+                <a href="#about">Sobre</a>
+                <a href="#gallery">Galeria</a>
+                <a href="#pricing">Preços</a>
+                <a href="#contact">Contactos</a>
+                <button class="dark-toggle" id="darkToggle" aria-label="Modo escuro">
+                    <i class="fas fa-moon" id="darkIcon"></i>
+                </button>
+                <button class="btn-nav">Saiba Mais</button>
+            </div>
+            <div class="nav-right-mobile">
+                <button class="dark-toggle" id="darkToggleMobile" aria-label="Modo escuro">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#features">Funcionalidades</a>
+            <a href="#about">Sobre</a>
+            <a href="#gallery">Galeria</a>
+            <a href="#pricing">Preços</a>
+            <a href="#contact">Contactos</a>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="heroSection">
+        <div class="hero-bg">
+            <div class="sphere sphere-1"></div>
+            <div class="sphere sphere-2"></div>
+            <div class="sphere sphere-3"></div>
+            <div class="circle-border circle-1"></div>
+            <div class="circle-border circle-2"></div>
+            <div class="circle-border circle-3"></div>
+        </div>
+
+        <div class="countdown-bar container-narrow">
+            <span class="countdown-label"><i class="fas fa-rocket"></i> Lançamento em:</span>
+            <div class="countdown-units">
+                <div class="countdown-unit"><span id="cd-days">000</span><small>Dias</small></div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-unit"><span id="cd-hours">00</span><small>Horas</small></div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-unit"><span id="cd-mins">00</span><small>Min</small></div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-unit"><span id="cd-secs">00</span><small>Seg</small></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Explore o <span class="highlight">Futuro</span></h1>
+                    <p>A Axion Pro combina mobilidade, funcionalidade e inovação. Suba escadas, ande em qualquer terreno com segurança total — nascida dos <strong style="color:#00d4ff">7 P's</strong> da inovação empresarial portuguesa.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary">Descubra Mais</button>
+                        <button class="btn-secondary" id="openVideoBtn"><i class="fas fa-play"></i> Veja o Vídeo</button>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image" id="heroImage">
+                    <div class="hero-image-bg"></div>
+                    <div class="hero-badge badge-top-right"><i class="fas fa-award"></i><span>Inovação 2026</span></div>
+                    <div class="hero-badge badge-bottom-left"><i class="fas fa-cogs"></i><span>Tecnologia 3 Rodas</span></div>
+                    <div class="hero-badge badge-mid-right"><i class="fas fa-shield-alt"></i><span>Segurança Total</span></div>
+                    <img src="carro da axion move .png" alt="Axion Move - Mesa-Carro com 3 Rodas" id="heroImg">
+                </div>
+            </div>
+        </div>
+        <svg class="wave-divider" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="var(--bg-wave)"></path>
+        </svg>
+    </section>
+
+    <!-- ===== STATS COUNTERS ===== -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item"><span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span><p>Clientes Satisfeitos</p></div>
+                <div class="stat-item"><span class="stat-number" data-target="3">0</span><p>Países</p></div>
+                <div class="stat-item"><span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span><p>Taxa de Satisfação</p></div>
+                <div class="stat-item"><span class="stat-number" data-target="2">0</span><p>Anos de Garantia</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Características Inovadoras</h2>
+                <p>Tudo que você precisa em uma mesa</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-cogs"></i></div><h3>3 Rodas Inteligentes</h3><p>Sistema de rodas inovador que permite andar em chão normal e subir escadas com facilidade e segurança total.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Fitas de Segurança</h3><p>Fitas resistentes nos 4 cantos que garantem a fixação segura de qualquer objeto sobre a mesa, evitando quedas.</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-truck"></i></div><h3>Multifuncional</h3><p>Perfeita para transporte de objetos, trabalho, organização e muito mais. Uma solução completa para sua mobilidade.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section id="about" class="how-it-works">
+        <div class="container">
+            <div class="section-header"><h2>Como Funciona</h2><p>Tecnologia ao seu alcance</p></div>
+            <div class="steps-grid">
+                <div class="step-card"><div class="step-number">1</div><h3>Carregue</h3><p>Coloque seus itens na mesa com segurança</p><div class="step-connector"></div></div>
+                <div class="step-card"><div class="step-number">2</div><h3>Prenda</h3><p>Use as fitas nos 4 cantos para fixar</p><div class="step-connector"></div></div>
+                <div class="step-card"><div class="step-number">3</div><h3>Mova</h3><p>Ande em qualquer terreno com facilidade</p><div class="step-connector"></div></div>
+                <div class="step-card"><div class="step-number">4</div><h3>Suba</h3><p>Escadas não são mais um problema</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SPECIFICATIONS ===== -->
+    <section class="specifications">
+        <div class="container">
+            <div class="section-header"><h2>Especificações Técnicas</h2><p>Detalhes que fazem a diferença</p></div>
+            <div class="specs-content">
+                <div class="specs-list">
+                    <div class="spec-item"><div class="spec-icon"><i class="fas fa-check-circle"></i></div><div><h3>3 Rodas Especiais</h3><p>Projetadas para subir escadas e andar em terrenos variados</p></div></div>
+                    <div class="spec-item"><div class="spec-icon"><i class="fas fa-check-circle"></i></div><div><h3>Fitas de Fixação</h3><p>4 fitas resistentes nos cantos para máxima segurança</p></div></div>
+                    <div class="spec-item"><div class="spec-icon"><i class="fas fa-check-circle"></i></div><div><h3>Material Resistente</h3><p>Construída com materiais de alta durabilidade</p></div></div>
+                    <div class="spec-item"><div class="spec-icon"><i class="fas fa-check-circle"></i></div><div><h3>Design Ergonómico</h3><p>Confortável e fácil de usar para todos</p></div></div>
+                </div>
+                <div class="specs-video">
+                    <video
+                        id="specsVideo"
+                        class="specs-video-player"
+                        src="video axion move.mp4"
+                        poster="carro da axion move .png"
+                        preload="metadata"
+                        playsinline>
+                    </video>
+                    <div class="specs-video-overlay" id="specsVideoOverlay">
+                        <button class="specs-play-btn" id="specsPlayBtn" aria-label="Reproduzir vídeo">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="specs-video-label">
+                            <span class="specs-video-tag"><i class="fas fa-video"></i> Vídeo Oficial</span>
+                            <p>Axion Pro em ação</p>
+                        </div>
+                    </div>
+                    <div class="specs-video-controls" id="specsVideoControls">
+                        <button class="svc-btn" id="svcPlayPause" aria-label="Play/Pause">
+                            <i class="fas fa-pause" id="svcPlayIcon"></i>
+                        </button>
+                        <div class="svc-progress-wrap" id="svcProgressWrap">
+                            <div class="svc-progress-bar" id="svcProgressBar"></div>
+                        </div>
+                        <span class="svc-time" id="svcTime">0:00 / 0:45</span>
+                        <button class="svc-btn" id="svcMute" aria-label="Mudo">
+                            <i class="fas fa-volume-up" id="svcMuteIcon"></i>
+                        </button>
+                        <button class="svc-btn" id="svcFullscreen" aria-label="Ecrã inteiro">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUST BADGES ===== -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-badge"><i class="fas fa-flag"></i><span>Produto Português</span></div>
+                <div class="trust-badge"><i class="fas fa-shield-alt"></i><span>Garantia 2 Anos</span></div>
+                <div class="trust-badge"><i class="fas fa-shipping-fast"></i><span>Envio Seguro</span></div>
+                <div class="trust-badge"><i class="fas fa-undo-alt"></i><span>Devolução 30 dias</span></div>
+                <div class="trust-badge"><i class="fas fa-lock"></i><span>Pagamento Seguro</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPARISON TABLE ===== -->
+    <section class="comparison">
+        <div class="container">
+            <div class="section-header"><h2>Axion Pro vs Concorrência</h2><p>Veja porque somos a melhor escolha</p></div>
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Funcionalidade</th>
+                            <th class="axion-col"><span class="axion-badge-table">Axion Pro</span></th>
+                            <th>Concorrência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Sobe escadas</td><td class="axion-col"><i class="fas fa-check-circle check"></i></td><td><i class="fas fa-times-circle cross"></i></td></tr>
+                        <tr><td>Fitas de segurança integradas</td><td class="axion-col"><i class="fas fa-check-circle check"></i></td><td><i class="fas fa-times-circle cross"></i></td></tr>
+                        <tr><td>Multi-terreno</td><td class="axion-col"><i class="fas fa-check-circle check"></i></td><td><i class="fas fa-times-circle cross"></i></td></tr>
+                        <tr><td>Design ergonómico</td><td class="axion-col"><i class="fas fa-check-circle check"></i></td><td><i class="fas fa-check-circle check"></i></td></tr>
+                        <tr><td>Garantia 2 anos</td><td class="axion-col"><i class="fas fa-check-circle check"></i></td><td><i class="fas fa-times-circle cross"></i></td></tr>
+                        <tr><td>Produto português</td><td class="axion-col"><i class="fas fa-check-circle check"></i></td><td><i class="fas fa-times-circle cross"></i></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header"><h2>Galeria Axion Move</h2><p>Veja nosso produto em ação</p></div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-index="0">
+                    <img src="Ap- Subindo a escada.png" alt="Axion Pro subindo escadas" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-stairs"></i> Subindo Escadas</div>
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="1">
+                    <img src="AP- Rodas.png" alt="Axion Pro - detalhe das rodas" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-cog"></i> Tecnologia das Rodas</div>
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <img src="AP- Parada.png" alt="Axion Pro parada com carga" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-box-open"></i> Com Objetos</div>
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="Ap- Ambinete Office.png" alt="Axion Pro em ambiente office" loading="lazy">
+                    <div class="gallery-caption"><i class="fas fa-building"></i> Ambiente Office</div>
+                    <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-container">
+            <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+            <div class="lightbox-content" id="lightboxContent"></div>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+            <div class="lightbox-counter" id="lightboxCounter">1 / 4</div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO MODAL ===== -->
+    <div id="videoModal" class="video-modal" role="dialog" aria-modal="true">
+        <div class="video-modal-backdrop" id="videoBackdrop"></div>
+        <div class="video-modal-box">
+            <button class="video-close" id="videoClose"><i class="fas fa-times"></i></button>
+            <div class="video-placeholder">
+                <i class="fas fa-play-circle"></i>
+                <p>Vídeo demonstrativo em breve!</p>
+                <span>A nossa equipa está a preparar o vídeo oficial da Axion Pro.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header"><h2>O que dizem nossos clientes</h2><p>Depoimentos reais</p></div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"><div class="testimonial-quote"><i class="fas fa-quote-left"></i></div><p class="testimonial-text">A Axion Pro transformou completamente a minha rotina de trabalho. Subir escadas com materiais pesados deixou de ser um problema. Produto incrível!</p><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testimonial-author"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><div><strong>Carlos Mendes</strong><span>Gestor de Logística</span></div></div></div>
+                <div class="testimonial-card"><div class="testimonial-quote"><i class="fas fa-quote-left"></i></div><p class="testimonial-text">Nunca pensei que uma mesa-carro pudesse ser tão inovadora. As fitas de segurança são resistentes e o sistema de 3 rodas funciona perfeitamente.</p><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testimonial-author"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><div><strong>Ana Rodrigues</strong><span>Arquiteta</span></div></div></div>
+                <div class="testimonial-card"><div class="testimonial-quote"><i class="fas fa-quote-left"></i></div><p class="testimonial-text">Produto de qualidade excepcional. Uso diariamente no escritório e o design ergonómico faz toda a diferença. Recomendo a todos!</p><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="testimonial-author"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><div><strong>Miguel Costa</strong><span>Engenheiro Civil</span></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header"><h2>Planos &amp; Preços</h2><p>Escolha o plano certo para si</p></div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header"><h3>Essencial</h3><div class="pricing-price"><span class="price-amount">Em breve</span></div><p>Ideal para uso pessoal</p></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Axion Pro base</li>
+                        <li><i class="fas fa-check"></i> 2 fitas de segurança</li>
+                        <li><i class="fas fa-check"></i> Garantia 1 ano</li>
+                        <li><i class="fas fa-check"></i> Manual ilustrado</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Fitas extra</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Suporte premium</li>
+                    </ul>
+                    <a href="#preregister" class="pricing-btn pricing-btn-outline">Pré-registar</a>
+                </div>
+                <div class="pricing-card pricing-featured">
+                    <div class="pricing-popular">Mais Popular</div>
+                    <div class="pricing-header"><h3>Pro</h3><div class="pricing-price"><span class="price-amount">Em breve</span></div><p>Ideal para profissionais</p></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Axion Pro completa</li>
+                        <li><i class="fas fa-check"></i> 4 fitas de segurança</li>
+                        <li><i class="fas fa-check"></i> Garantia 2 anos</li>
+                        <li><i class="fas fa-check"></i> Manual + vídeo tutorial</li>
+                        <li><i class="fas fa-check"></i> Kit fitas extra</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Suporte premium</li>
+                    </ul>
+                    <a href="#preregister" class="pricing-btn pricing-btn-primary">Pré-registar</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header"><h3>Business</h3><div class="pricing-price"><span class="price-amount">Sob consulta</span></div><p>Para empresas e frotas</p></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Múltiplas unidades</li>
+                        <li><i class="fas fa-check"></i> Fitas ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Garantia 2 anos</li>
+                        <li><i class="fas fa-check"></i> Formação incluída</li>
+                        <li><i class="fas fa-check"></i> Kit personalizado</li>
+                        <li><i class="fas fa-check"></i> Suporte premium 24/7</li>
+                    </ul>
+                    <a href="#contact" class="pricing-btn pricing-btn-outline">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRE-REGISTER ===== -->
+    <section id="preregister" class="preregister">
+        <div class="container">
+            <div class="preregister-content">
+                <div class="preregister-text">
+                    <span class="preregister-badge"><i class="fas fa-bolt"></i> Oferta limitada</span>
+                    <h2>Seja dos Primeiros</h2>
+                    <p>Registe o seu email e garanta acesso antecipado com <strong>desconto exclusivo de pré-lançamento</strong>. Apenas 100 vagas disponíveis.</p>
+                    <div class="preregister-perks">
+                        <div class="perk"><i class="fas fa-tag"></i><span>Desconto especial de lançamento</span></div>
+                        <div class="perk"><i class="fas fa-bell"></i><span>Notificação imediata no lançamento</span></div>
+                        <div class="perk"><i class="fas fa-gift"></i><span>Brinde surpresa para os primeiros 50</span></div>
+                    </div>
+                </div>
+                <div class="preregister-form-wrapper">
+                    <form class="preregister-form" id="preregisterForm">
+                        <div class="form-group"><input type="text" placeholder="O seu nome" id="prereg-name" required></div>
+                        <div class="form-group"><input type="email" placeholder="O seu email" id="prereg-email" required></div>
+                        <button type="submit" class="btn-primary preregister-submit"><i class="fas fa-bolt"></i> Garantir o meu lugar</button>
+                        <p class="preregister-disclaimer"><i class="fas fa-lock"></i> Sem spam. Cancelar a qualquer momento.</p>
+                    </form>
+                    <div class="preregister-counter">
+                        <div class="counter-bar-wrap"><div class="counter-bar" style="width:63%"></div></div>
+                        <p><strong>63</strong> de 100 vagas preenchidas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header"><h2>Perguntas Frequentes</h2><p>Tire suas dúvidas</p></div>
+            <div class="faq-list">
+                <div class="faq-item"><button class="faq-question"><span>Qual é o peso máximo suportado pela Axion Pro?</span><i class="fas fa-plus faq-icon"></i></button><div class="faq-answer"><p>A Axion Pro suporta até 80kg de carga distribuída uniformemente. As fitas de segurança garantem que os objetos permaneçam fixos durante todo o deslocamento.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>De que material é feita a Axion Pro?</span><i class="fas fa-plus faq-icon"></i></button><div class="faq-answer"><p>Estrutura em aço inoxidável de alta resistência, superfície antiderrapante e rodas em polímero reforçado para máxima durabilidade e leveza.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>A Axion Pro é resistente à água?</span><i class="fas fa-plus faq-icon"></i></button><div class="faq-answer"><p>Sim! Possui tratamento impermeável na estrutura principal e é resistente a chuva leve e ambientes húmidos.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Qual é a garantia do produto?</span><i class="fas fa-plus faq-icon"></i></button><div class="faq-answer"><p>A Axion Pro acompanha 2 anos de garantia contra defeitos de fabricação, suporte técnico dedicado e substituição de peças durante a garantia.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>É necessária montagem? Vem pré-montada?</span><i class="fas fa-plus faq-icon"></i></button><div class="faq-answer"><p>Vem 90% pré-montada de fábrica. A montagem final leva apenas 10 minutos sem ferramentas especiais. Inclui manual ilustrado e vídeo tutorial.</p></div></div>
+                <div class="faq-item"><button class="faq-question"><span>Qual o prazo de entrega para Portugal?</span><i class="fas fa-plus faq-icon"></i></button><div class="faq-answer"><p>Portugal Continental: 3 a 5 dias úteis. Açores e Madeira: até 8 dias úteis. Todas as encomendas incluem número de rastreamento.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header"><h2>Entre em Contacto</h2><p>Tem dúvidas? Fale connosco!</p></div>
+            <div class="contact-cards">
+                <div class="contact-card"><div class="contact-icon"><i class="fas fa-envelope"></i></div><h3>Email</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="14756c7d7b7a797b6271547379757d783a777b79">[email&#160;protected]</a></p></div>
+                <div class="contact-card"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><h3>Telefone</h3><p>+351 918 911 718</p></div>
+                <div class="contact-card"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><h3>Portugal</h3><p>Coimbra</p></div>
+            </div>
+            <div class="contact-bottom">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group"><input type="text" id="name" placeholder="Seu Nome" required></div>
+                        <div class="form-group"><input type="email" id="email" placeholder="Seu Email" required></div>
+                        <div class="form-group"><textarea id="message" placeholder="Sua Mensagem" required></textarea></div>
+                        <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Enviar Mensagem</button>
+                    </form>
+                </div>
+                <div class="contact-map">
+                    <div class="map-embed">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3113.7959875397736!2d-9.1399!3d38.7169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19331a61e4f33b%3A0x400ebbde49036d0!2sLisboa%2C%20Portugal!5e0!3m2!1spt!2spt!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lisboa Portugal"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL CONFIRMACAO ===== -->
+    <div id="successModal" class="success-modal" role="dialog" aria-modal="true">
+        <div class="success-modal-backdrop"></div>
+        <div class="success-modal-box">
+            <div class="success-check"><i class="fas fa-check"></i></div>
+            <h3 id="successTitle">Mensagem Enviada!</h3>
+            <p id="successMessage">Obrigado pelo contacto!</p>
+            <button class="success-close" id="successClose">Fechar</button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Axion Move</h3>
+                    <p>A revolução em mobilidade e transporte. Nascida dos 7 P's da inovação empresarial portuguesa.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Produto</h3>
+                    <ul>
+                        <li><a href="#features">Funcionalidades</a></li>
+                        <li><a href="#about">Especificações</a></li>
+                        <li><a href="#pricing">Preços</a></li>
+                        <li><a href="#gallery">Galeria</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#contact">Contactos</a></li>
+                        <li><a href="#preregister">Pré-registo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Termos</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Axion Move. Todos os direitos reservados. Projeto de Grupo Inovador.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" a
